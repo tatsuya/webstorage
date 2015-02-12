@@ -1,0 +1,16 @@
+{
+  "name": "webstorage",
+  "version": "0.0.1",
+  "description": "Node.js implementation of Web Storage",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 4000",
+    "lint": "jshint index.js test"
+  },
+  "author": "Tatsuya Oiwa <tatsuyaoiw@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~2.1.0",
+    "jshint": "~2.6.0"
+  }
+}
