@@ -1,7 +1,7 @@
 {
   "name": "webstorage",
   "version": "0.0.1",
-  "description": "Node.js implementation of Web Storage",
+  "description": "Node.js implementation of W3C Web Storage",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
@@ -12,5 +12,17 @@
   "devDependencies": {
     "mocha": "~2.1.0",
     "jshint": "~2.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tatsuyaoiw/webstorage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tatsuyaoiw/webstorage/issues"
+  },
+  "homepage": "https://github.com/tatsuyaoiw/webstorage",
+  "keywords": [
+    "webstorage",
+    "localstorage"
+  ]
 }
