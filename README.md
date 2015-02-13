@@ -2,9 +2,9 @@
 
 A simple, pluggable, [W3C Web Storage] compliant API for key-value data.
 
-In webstorage, all persistence layer is **pluggable**. It means you can integrate or reuse webstorage interface across any backends such as in-memory database, local file system, mongodb, redis, etc.
+In webstorage, all persistence layer is **pluggable**. You can integrate or reuse webstorage interface across any backends such as in-memory database, local file system, mongodb, redis, etc.
 
-By default, webstorage does not persist data, it just uses in-memory object as its storage.
+By default, webstorage does not persist data. It means that it will use in-memory object as its backend.
 
 ```js
 var webstorage = require('webstorage');
