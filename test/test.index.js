@@ -58,6 +58,14 @@ describe('index', function() {
       assert.equal(Object.keys(storage).length, 1);
       assert.equal(storage.getItem('foo'), 'baz');
     });
+
+    it('should permit to use an empty string as a key', function() {
+      var storage = new Storage();
+      assert.equal(Object.keys(storage).length, 0);
+      storage.setItem('', '');
+      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.getItem(''), '');
+    });
   });
 
   describe('removeItem', function() {
