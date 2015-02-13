@@ -154,10 +154,6 @@ Removes the item with the given key.
 
 Empty all key/value pairs.
 
-## TODO
-
-- Support empty string key
-
 ## License
 
 MIT
