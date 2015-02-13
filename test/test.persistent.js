@@ -5,9 +5,10 @@ var fs = require('fs');
 var join = require('path').join;
 var rimraf = require('rimraf');
 
+var webstorage = require('..');
+var local = require('../persistent/local');
+
 var tmp = join(__dirname, 'tmp/local');
-var Local = require('../persistent/local');
-var Storage = require('..');
 
 function encode(str) {
   return new Buffer(str).toString('base64');
@@ -22,7 +23,7 @@ describe('index', function() {
   });
 
   it('should persist items', function() {
-    var storage = new Storage(new Local(tmp));
+    var storage = webstorage(local(tmp));
 
     var key = 'foo';
     var value = 'bar';
@@ -32,13 +33,13 @@ describe('index', function() {
     assert.equal(Object.keys(storage).length, 1);
     assert.equal(fs.readFileSync(file, 'utf8'), value);
 
-    var anotherStorage = new Storage(new Local(tmp));
+    var anotherStorage = webstorage(local(tmp));
     assert.equal(anotherStorage.getItem(key), value);
   });
 
   describe('setItem', function() {
     it('should add the new item to persistent storage', function() {
-      var storage = new Storage(new Local(tmp));
+      var storage = webstorage(local(tmp));
       assert.equal(Object.keys(storage).length, 0);
 
       var key = 'foo';
@@ -52,7 +53,7 @@ describe('index', function() {
     });
 
     it('should update the existing item in persistent storage', function() {
-      var storage = new Storage(new Local(tmp));
+      var storage = webstorage(local(tmp));
       assert.equal(Object.keys(storage).length, 0);
 
       var key = 'foo';
@@ -74,7 +75,7 @@ describe('index', function() {
 
   describe('removeItem', function() {
     it('should remove the item from persistent storage', function() {
-      var storage = new Storage(new Local(tmp));
+      var storage = webstorage(local(tmp));
 
       var key = 'foo';
       var value = 'bar';
@@ -94,7 +95,7 @@ describe('index', function() {
 
   describe('clear', function() {
     it('should clear all items in persistent storage', function() {
-      var storage = new Storage(new Local(tmp));
+      var storage = webstorage(local(tmp));
 
       var keys = ['foo', 'bar'];
       var values = ['bar', 'baz'];

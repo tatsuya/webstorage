@@ -1,13 +1,13 @@
 'use strict';
 
 var assert = require('assert');
-var Storage = require('..');
+var webstorage = require('..');
 
 describe('index', function() {
 
   describe('length', function() {
     it('should return the number of key/value pairs', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       assert.equal(storage.length, 0);
       storage.setItem('foo', 'bar');
       assert.equal(storage.length, 1);
@@ -16,7 +16,7 @@ describe('index', function() {
 
   describe('key', function() {
     it('should return the name of the nth key in the list', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       storage.setItem('foo', 'bar');
       storage.setItem('bar', 'baz');
       assert.equal(storage.key(0), 'foo');
@@ -27,14 +27,14 @@ describe('index', function() {
     });
 
     it('should throw TypeError if argument is empty', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       assert.throws(storage.key, TypeError);
     });
   });
 
   describe('getItem', function() {
     it('should return the current value associated with the given key', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       storage.setItem('foo', 'bar');
       assert.equal(storage.getItem('foo'), 'bar');
     });
@@ -42,14 +42,14 @@ describe('index', function() {
 
   describe('setItem', function() {
     it('should add new key/value pair', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       assert.equal(Object.keys(storage).length, 0);
       storage.setItem('foo', 'bar');
       assert.equal(Object.keys(storage).length, 1);
     });
 
     it('should update the new key/value pair', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       assert.equal(Object.keys(storage).length, 0);
       storage.setItem('foo', 'bar');
       assert.equal(Object.keys(storage).length, 1);
@@ -60,7 +60,7 @@ describe('index', function() {
     });
 
     it('should permit to use an empty string as a key', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       assert.equal(Object.keys(storage).length, 0);
       storage.setItem('', '');
       assert.equal(Object.keys(storage).length, 1);
@@ -70,7 +70,7 @@ describe('index', function() {
 
   describe('removeItem', function() {
     it('should remove the key/value pair with the given key', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       storage.setItem('foo', 'bar');
       assert.equal(Object.keys(storage).length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
@@ -82,7 +82,7 @@ describe('index', function() {
 
   describe('clear', function() {
     it('should empty all key/value pairs', function() {
-      var storage = new Storage();
+      var storage = webstorage();
       storage.setItem('foo', 'bar');
       storage.setItem('bar', 'baz');
       assert.equal(Object.keys(storage).length, 2);

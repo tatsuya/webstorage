@@ -10,6 +10,9 @@ var join = require('path').join;
  * @constructor
  */
 function LocalPersistent(path) {
+  if (!(this instanceof LocalPersistent)) {
+    return new LocalPersistent(path);
+  }
   mkdirp.sync(path);
   this.path = path;
 }

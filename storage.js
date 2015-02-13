@@ -1,5 +1,7 @@
 'use strict';
 
+var memory = require('./persistent/memory');
+
 /**
  * Storage constructor. Each Storage object provides access to a list of
  * key/value pairs. Keys are strings. Any string (including the empty string) is
@@ -8,16 +10,20 @@
  * @constructor
  */
 function Storage(persistent) {
-  if (persistent) {
-    Object.defineProperty(this, 'persistent', {
-      value: persistent
-    });
-
-    var self = this;
-    self.persistent.keys().forEach(function(key) {
-      self[key] = self.persistent.getItem(key);
-    });
+  if (!(this instanceof Storage)) {
+    return new Storage(persistent);
   }
+
+  persistent = persistent || memory();
+
+  Object.defineProperty(this, 'persistent', {
+    value: persistent
+  });
+
+  var self = this;
+  self.persistent.keys().forEach(function(key) {
+    self[key] = self.persistent.getItem(key);
+  });
 }
 
 /**
@@ -82,9 +88,7 @@ Storage.prototype.getItem = function(key) {
  */
 Storage.prototype.setItem = function(key, value) {
   value = String(value);
-  if (this.persistent) {
-    this.persistent.setItem(key, value);
-  }
+  this.persistent.setItem(key, value);
   this[key] = value;
 };
 
@@ -96,9 +100,7 @@ Storage.prototype.setItem = function(key, value) {
  * @param {String} key
  */
 Storage.prototype.removeItem = function(key) {
-  if (this.persistent) {
-    this.persistent.removeItem(key);
-  }
+  this.persistent.removeItem(key);
   delete this[key];
 };
 
@@ -107,9 +109,7 @@ Storage.prototype.removeItem = function(key) {
  * pairs, if there are any. If there are none, then the method does nothing.
  */
 Storage.prototype.clear = function() {
-  if (this.persistent) {
-    this.persistent.clear();
-  }
+  this.persistent.clear();
   var self = this;
   Object.keys(self).forEach(function(key) {
     delete self[key];
