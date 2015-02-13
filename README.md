@@ -94,11 +94,11 @@ Causes the key/value pair with the given key to be removed from the list associa
 
 Causes the list associated with the object to be emptied of all key/value pairs, if there are any. If there are none, then the method does nothing.
 
-## Persistence API
+## Persistence Plugin API
 
 ### Persistence
 
-The `Persistence` interface represents the persistent data storage.
+The `Persistence` interface represents the persistent data storage. All plugins should implement the following methods.
 
 ### persistent#keys()
 
@@ -114,7 +114,7 @@ Adds or updates the key/value pair.
 
 ### persistent#removeItem(key)
 
-Removes the item with the given key from the persistent storage.
+Removes the item with the given key.
 
 ### persistent#clear()
 
