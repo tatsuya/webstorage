@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
-    "lint": "jshint index.js persistent test"
+    "lint": "jshint index.js storage.js persistent test"
   },
   "author": "Tatsuya Oiwa <tatsuyaoiw@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "mocha": "~2.1.0",
-    "jshint": "~2.6.0",
-    "rimraf": "~2.2.8"
+    "jshint": "~2.6.0"
   },
   "repository": {
     "type": "git",
@@ -25,8 +24,5 @@
   "keywords": [
     "webstorage",
     "localstorage"
-  ],
-  "dependencies": {
-    "mkdirp": "~0.5.0"
-  }
+  ]
 }

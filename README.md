@@ -14,7 +14,7 @@ storage.setItem('foo', 'bar');
 storage.getItem('foo') // => 'bar'
 ```
 
-If you want to persist data locally, you can use `webstorage-local` plugin.
+If you want to persist data locally, you can use [webstorage-local] plugin.
 
 ```js
 var webstorage = require('webstorage');
@@ -35,8 +35,7 @@ $ npm install webstorage
 
 Currently the following plugins are available:
 
-- webstorage-memory
-- webstorage-local
+- [webstorage-local]
 
 ## API
 
@@ -63,11 +62,11 @@ Each Storage object provides access to a list of key/value pairs. Keys are strin
 
 Creates a new `Storage` and attaches it to the given `persistence`. Default persistence is `webstorage-memory`.
 
-### Storage#length
+### #length
 
 Returns the number of key/value pairs currently present in the list associated with the object.
 
-### storage#key(n)
+### #key(n)
 
 Returns the name of the nth key in the list. The order of keys must be consistent within an object so long as the number of keys doesn't change. If n is greater than or equal to the number of key/value pairs in the object, then this method must return null.
 
@@ -78,19 +77,19 @@ storage.key(0); // => 'bar'
 storage.key(1); // => null
 ```
 
-### storage#getItem(key)
+### #getItem(key)
 
 Returns the current value associated with the given key. If the given key does not exist in the list associated with the object then this method must return null.
 
-### storage#setItem(key, value)
+### #setItem(key, value)
 
 First, checks if a key/value pair with the given key already exists in the list associated with the object. If it does not, then a new key/value pair is added to the list, with the given key and with its value set to value. If the key does exist in the list, then it has its value updated to value.
 
-### storage#removeItem(key)
+### #removeItem(key)
 
 Causes the key/value pair with the given key to be removed from the list associated with the object, if it exists. If no item with that key exists,the method does nothing.
 
-### storage#clear()
+### #clear()
 
 Causes the list associated with the object to be emptied of all key/value pairs, if there are any. If there are none, then the method does nothing.
 
@@ -98,35 +97,70 @@ Causes the list associated with the object to be emptied of all key/value pairs,
 
 ### Persistence
 
-The `Persistence` interface represents the persistent data storage. All plugins should implement the following methods.
+The `Persistence` class is an interface represents the persistent data storage. A plugin must be an implementation of this interface.
 
-### persistent#keys()
+Here is an example implementation of default in-memory data storage, see full example at `persistent/memory`.
+
+```js
+function MemoryStorage() {
+  if (!(this instanceof MemoryStorage)) {
+    return new MemoryStorage();
+  }
+}
+
+MemoryStorage.prototype.keys = function() {
+  return Object.keys(this);
+};
+
+MemoryStorage.prototype.getItem = function(key) {
+  return String(this[key]);
+};
+
+MemoryStorage.prototype.setItem = function(key, value) {
+  this[key] = value;
+};
+
+MemoryStorage.prototype.removeItem = function(key) {
+  delete this[key];
+};
+
+MemoryStorage.prototype.clear = function() {
+  var self = this;
+  Object.keys(this).forEach(function(key) {
+    delete self[key];
+  });
+};
+
+module.exports = MemoryStorage;
+```
+
+### #keys()
 
 Returns all keys stored.
 
-### persistent#getItem(key)
+### #getItem(key)
 
 Returns the value associated with the given key.
 
-### persistent#setItem(key, value)
+### #setItem(key, value)
 
 Adds or updates the key/value pair.
 
-### persistent#removeItem(key)
+### #removeItem(key)
 
 Removes the item with the given key.
 
-### persistent#clear()
+### #clear()
 
 Empty all key/value pairs.
 
 ## TODO
 
 - Support empty string key
-- Use async API as much as possible
 
 ## License
 
 MIT
 
 [W3C Web Storage]: http://www.w3.org/TR/webstorage/
+[webstorage-local]: https://github.com/tatsuyaoiw/webstorage-local
