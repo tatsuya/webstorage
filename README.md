@@ -25,24 +25,22 @@ localStorage.setItem('foo', 'bar');
 localStorage.getItem('foo') // => 'bar'
 ```
 
-```js
-var os = require('os');
-var LocalStorage = require('webstorage-local');
-var localStorage = new WebStorage(new LocalStorage(os.tmpdir()));
-
-localStorage.setItem('foo', 'bar');
-localStorage.getItem('foo') // => 'bar'
-```
-
 ## Installation
 
 ```
-npm install webstorage
+$ npm install webstorage
 ```
+
+## Plugins
+
+Currently the following plugins are available:
+
+- webstorage-memory
+- webstorage-local
 
 ## API
 
-Check out the [W3C Web Storage] specification for details.
+Check out the [W3C Web Storage] for detailed specification.
 
 ### Storage
 
