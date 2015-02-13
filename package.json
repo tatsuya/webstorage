@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec --timeout 4000",
-    "lint": "jshint index.js storage.js persistent test"
+    "lint": "jshint index.js lib test"
   },
   "author": "Tatsuya Oiwa <tatsuyaoiw@gmail.com>",
   "license": "MIT",

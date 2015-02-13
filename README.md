@@ -99,7 +99,7 @@ Causes the list associated with the object to be emptied of all key/value pairs,
 
 The `Persistence` class is an interface represents the persistent data storage. A plugin must be an implementation of this interface.
 
-Here is an example implementation of default in-memory data storage, see full example at `persistent/memory`.
+Here is an example implementation of default in-memory data storage, see full example at `lib/persistent/memory`.
 
 ```js
 function MemoryStorage() {
