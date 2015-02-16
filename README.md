@@ -124,13 +124,6 @@ MemoryStorage.prototype.removeItem = function(key) {
   delete this[key];
 };
 
-MemoryStorage.prototype.clear = function() {
-  var self = this;
-  Object.keys(this).forEach(function(key) {
-    delete self[key];
-  });
-};
-
 module.exports = MemoryStorage;
 ```
 
@@ -149,10 +142,6 @@ Adds or updates the key/value pair.
 ### #removeItem(key)
 
 Removes the item with the given key.
-
-### #clear()
-
-Empty all key/value pairs.
 
 ## License
 
