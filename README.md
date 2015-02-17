@@ -93,13 +93,28 @@ Causes the key/value pair with the given key to be removed from the list associa
 
 Causes the list associated with the object to be emptied of all key/value pairs, if there are any. If there are none, then the method does nothing.
 
-## Persistence Plugin API
+## Implementing persistent storage plugin
 
-### Persistence
+Your persistent storage class for a plugin module should implement the following methods.
 
-The `Persistence` class is an interface represents the persistent data storage. A plugin must be an implementation of this interface.
+### #keys()
 
-Here is an example implementation of default in-memory data storage, see full example at `lib/persistent/memory`.
+Returns all keys stored.
+
+### #getItem(key)
+
+Returns the value associated with the given key.
+
+### #setItem(key, value)
+
+Adds or updates the key/value pair.
+
+### #removeItem(key)
+
+Removes the item with the given key.
+
+
+Here is an example of default in-memory persistent storage, see full example at `lib/persistent/memory`.
 
 ```js
 function MemoryStorage() {
@@ -126,22 +141,6 @@ MemoryStorage.prototype.removeItem = function(key) {
 
 module.exports = MemoryStorage;
 ```
-
-### #keys()
-
-Returns all keys stored.
-
-### #getItem(key)
-
-Returns the value associated with the given key.
-
-### #setItem(key, value)
-
-Adds or updates the key/value pair.
-
-### #removeItem(key)
-
-Removes the item with the given key.
 
 ## License
 
