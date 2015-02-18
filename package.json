@@ -11,7 +11,9 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "~2.1.0",
-    "jshint": "~2.6.0"
+    "jshint": "~2.6.0",
+    "webstorage-local": "0.0.3",
+    "rimraf": "~2.2.8"
   },
   "repository": {
     "type": "git",
