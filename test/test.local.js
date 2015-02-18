@@ -93,9 +93,19 @@ describe('local', function() {
       storage.setItem('foo', 'bar');
       assert.equal(Object.keys(storage).length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
-      storage.removeItem('foo', 'baz');
+      storage.removeItem('foo');
       assert.equal(Object.keys(storage).length, 0);
       assert.equal(storage.getItem('foo'), null);
+    });
+
+    it('should remove the key/value pair with the given number key', function() {
+      var storage = createLocalStorage();
+      storage.setItem(0, 'zero');
+      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.getItem(0), 'zero');
+      storage.removeItem(0);
+      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.getItem(0), null);
     });
   });
 
