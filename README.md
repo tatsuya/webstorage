@@ -132,7 +132,7 @@ MemoryStorage.prototype.getItem = function(key) {
 };
 
 MemoryStorage.prototype.setItem = function(key, value) {
-  this[key] = value;
+  this[key] = String(value);
 };
 
 MemoryStorage.prototype.removeItem = function(key) {
