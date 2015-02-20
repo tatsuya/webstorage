@@ -43,27 +43,27 @@ describe('index', function() {
   describe('setItem', function() {
     it('should add new key/value pair', function() {
       var storage = webstorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
     });
 
     it('should update the new key/value pair', function() {
       var storage = webstorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
       storage.setItem('foo', 'baz');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'baz');
     });
 
     it('should permit to use an empty string as a key', function() {
       var storage = webstorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem('', '');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem(''), '');
     });
   });
@@ -72,10 +72,10 @@ describe('index', function() {
     it('should remove the key/value pair with the given key', function() {
       var storage = webstorage();
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
       storage.removeItem('foo', 'baz');
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       assert.equal(storage.getItem('foo'), null);
     });
   });
@@ -85,9 +85,9 @@ describe('index', function() {
       var storage = webstorage();
       storage.setItem('foo', 'bar');
       storage.setItem('bar', 'baz');
-      assert.equal(Object.keys(storage).length, 2);
+      assert.equal(storage.length, 2);
       storage.clear();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
     });
   });
 

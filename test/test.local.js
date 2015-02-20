@@ -59,19 +59,19 @@ describe('local', function() {
   describe('setItem', function() {
     it('should add new key/value pair', function() {
       var storage = createLocalStorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
     });
 
     it('should update the new key/value pair', function() {
       var storage = createLocalStorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
       storage.setItem('foo', 'baz');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'baz');
     });
 
@@ -81,9 +81,9 @@ describe('local', function() {
 
     it('should allow 0 to be used as a key', function() {
       var storage = createLocalStorage();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       storage.setItem(0, 'zero');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
     });
   });
 
@@ -91,20 +91,20 @@ describe('local', function() {
     it('should remove the key/value pair with the given key', function() {
       var storage = createLocalStorage();
       storage.setItem('foo', 'bar');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem('foo'), 'bar');
       storage.removeItem('foo');
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       assert.equal(storage.getItem('foo'), null);
     });
 
     it('should remove the key/value pair with the given number key', function() {
       var storage = createLocalStorage();
       storage.setItem(0, 'zero');
-      assert.equal(Object.keys(storage).length, 1);
+      assert.equal(storage.length, 1);
       assert.equal(storage.getItem(0), 'zero');
       storage.removeItem(0);
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
       assert.equal(storage.getItem(0), null);
     });
   });
@@ -114,9 +114,9 @@ describe('local', function() {
       var storage = createLocalStorage();
       storage.setItem('foo', 'bar');
       storage.setItem('bar', 'baz');
-      assert.equal(Object.keys(storage).length, 2);
+      assert.equal(storage.length, 2);
       storage.clear();
-      assert.equal(Object.keys(storage).length, 0);
+      assert.equal(storage.length, 0);
     });
   });
 
