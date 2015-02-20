@@ -1,6 +1,6 @@
 {
   "name": "webstorage",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple, pluggable, W3C Web Storage compliant API for key-value data",
   "main": "index.js",
   "scripts": {
