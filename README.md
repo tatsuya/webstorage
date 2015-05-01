@@ -1,5 +1,7 @@
 # webstorage
 
+[![Build Status](https://travis-ci.org/tatsuyaoiw/webstorage.svg?branch=master)](https://travis-ci.org/tatsuyaoiw/webstorage)
+
 A simple, pluggable, [W3C Web Storage] compliant API for key-value data.
 
 In webstorage, all persistence layer is **pluggable**. You can integrate or reuse webstorage interface across any backends such as in-memory database, local file system, mongodb, redis, etc.
